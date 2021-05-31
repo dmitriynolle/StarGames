@@ -9,17 +9,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class BaseScreen implements Screen, InputProcessor {
 
     protected SpriteBatch batch;
+    protected Texture fon;
 
     @Override
     public void show() {
         System.out.println("show");
         batch = new SpriteBatch();
         Gdx.input.setInputProcessor(this);
+        fon = new Texture("fon.jpg");
     }
 
     @Override
     public void render(float delta) {
-
+        batch.begin();
+        batch.draw(fon,0,0);
+        batch.end();
     }
 
     @Override
