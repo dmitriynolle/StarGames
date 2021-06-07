@@ -29,6 +29,7 @@ public class MainShip extends Sprite {
     private TextureRegion bulletRegion;
     private Vector2 bulletV;
     private Vector2 bulletPos;
+    private float deltaTime;
 
     public MainShip(TextureAtlas atlas, BulletPool bulletPool) {
         super(atlas.findRegion("main_ship"), 1, 2, 2);
@@ -55,6 +56,11 @@ public class MainShip extends Sprite {
         if (getLeft() < worldBounds.getLeft()) {
             setLeft(worldBounds.getLeft());
             stop();
+        }
+        deltaTime += delta;
+        if (deltaTime > 0.3f){
+            shoot();
+            deltaTime = 0;
         }
 //        if (getLeft() > worldBounds.getRight()) {
 //            setRight(worldBounds.getLeft());
