@@ -8,7 +8,7 @@ import ru.gb.screen.GameScreen;
 
 public class PlayButton extends ScaledButton {
 
-    private static final float HEIGHT = 0.13f;
+    private static final float HEIGHT = 0.26f;
     private static final float PADDING = 0.03f;
 
     private final Game game;

@@ -1,7 +1,5 @@
 package ru.gb.sprite;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import ru.gb.base.Sprite;
@@ -13,12 +11,10 @@ public class Bullet extends Sprite {
     private Vector2 v;
     private int damage;
     private Sprite owner;
-    private Sound sound;
 
     public Bullet() {
         regions = new TextureRegion[1];
         v = new Vector2();
-        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/bullet.wav"));
     }
 
     public void set(
@@ -37,7 +33,6 @@ public class Bullet extends Sprite {
         this.worldBounds = worldBounds;
         this.damage = damage;
         setHeightProportion(height);
-        sound.play(1.0f);
     }
 
     @Override

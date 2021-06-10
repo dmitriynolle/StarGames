@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-
 import com.badlogic.gdx.utils.ScreenUtils;
 import ru.gb.base.BaseScreen;
 import ru.gb.math.Rect;
@@ -14,13 +13,16 @@ import ru.gb.sprite.PlayButton;
 import ru.gb.sprite.Star;
 
 public class MenuScreen extends BaseScreen {
+
     private static final int STAR_COUNT = 256;
+
     private final Game game;
 
     private Texture bg;
+    private TextureAtlas atlas;
+
     private Background background;
     private Star[] stars;
-    private TextureAtlas atlas;
     private ExitButton exitButton;
     private PlayButton playButton;
 
@@ -31,7 +33,7 @@ public class MenuScreen extends BaseScreen {
     @Override
     public void show() {
         super.show();
-        bg = new Texture("textures/fon.jpg");
+        bg = new Texture("textures/bg.png");
         background = new Background(bg);
         atlas = new TextureAtlas("textures/menuAtlas.tpack");
         stars = new Star[STAR_COUNT];

@@ -3,12 +3,10 @@ package ru.gb.base;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-
 import ru.gb.math.MatrixUtils;
 import ru.gb.math.Rect;
 
@@ -17,14 +15,13 @@ public class BaseScreen implements Screen, InputProcessor {
     protected SpriteBatch batch;
 
     private Rect screenBounds;
-    private Rect worldBounds;
+    protected Rect worldBounds;
     private Rect glBounds;
 
     private Matrix4 worldToGl;
     private Matrix3 screenToWorld;
 
     private Vector2 touch;
-    private Music music;
 
     @Override
     public void show() {
@@ -37,8 +34,6 @@ public class BaseScreen implements Screen, InputProcessor {
         screenToWorld = new Matrix3();
         touch = new Vector2();
         Gdx.input.setInputProcessor(this);
-        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
-        music.play();
     }
 
     @Override
