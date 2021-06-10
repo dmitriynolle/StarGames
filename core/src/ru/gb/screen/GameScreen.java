@@ -59,6 +59,8 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public void render(float delta) {
+        hit();
+        crash();
         update(delta);
         freeAllDestroyed();
         draw();
@@ -136,5 +138,32 @@ public class GameScreen extends BaseScreen {
         bulletPool.drawActiveSprites(batch);
         enemyPool.drawActiveSprites(batch);
         batch.end();
+    }
+
+    private void crash(){
+        if (enemyPool.getActiveObjects().size() > 0){
+            for (int i = 0; i < enemyPool.getActiveObjects().size(); i++) {
+                if (mainShip.getLeft() <= enemyPool.getActiveObjects().get(i).getRight() &&
+                        mainShip.getRight() >= enemyPool.getActiveObjects().get(i).getLeft() &&
+                        mainShip.getTop() >= enemyPool.getActiveObjects().get(i).getBottom()){
+                    enemyPool.getActiveObjects().get(i).destroy();
+                }
+            }
+        }
+    }
+
+    private void hit(){
+        if (enemyPool.getActiveObjects().size() > 0 && bulletPool.getActiveObjects().size() > 0){
+            for (int i = 0; i < enemyPool.getActiveObjects().size(); i++) {
+                for (int j = 0; j < bulletPool.getActiveObjects().size(); j++) {
+                    if (bulletPool.getActiveObjects().get(j).getLeft() <= enemyPool.getActiveObjects().get(i).getRight() &&
+                            bulletPool.getActiveObjects().get(j).getRight() >= enemyPool.getActiveObjects().get(i).getLeft() &&
+                            bulletPool.getActiveObjects().get(j).getTop() >= enemyPool.getActiveObjects().get(i).getBottom() &&
+                            bulletPool.getActiveObjects().get(j).getBottom() >= enemyPool.getActiveObjects().get(i).getTop()){
+                        enemyPool.getActiveObjects().get(i).destroy();
+                    }
+                }
+            }
+        }
     }
 }
