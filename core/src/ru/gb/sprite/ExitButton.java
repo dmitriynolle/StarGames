@@ -7,7 +7,7 @@ import ru.gb.math.Rect;
 
 public class ExitButton extends ScaledButton {
 
-    private static final float HEIGHT = 0.1f;
+    private static final float HEIGHT = 0.2f;
     private static final float PADDING = 0.03f;
 
     public ExitButton(TextureAtlas atlas) {
@@ -18,7 +18,7 @@ public class ExitButton extends ScaledButton {
     public void resize(Rect worldBounds) {
         super.resize(worldBounds);
         setHeightProportion(HEIGHT);
-        setBottom(worldBounds.getBottom() + PADDING - 0.01f);
+        setBottom(worldBounds.getBottom() + PADDING);
         setRight(worldBounds.getRight() - PADDING);
     }
 
