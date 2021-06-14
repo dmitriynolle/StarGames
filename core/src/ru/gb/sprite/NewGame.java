@@ -26,6 +26,7 @@ public class NewGame extends ScaledButton {
         gameScreen.mainShip.setHp(10);
         gameScreen.mainShip.alilve();
         gameScreen.mainShip.setLeft(0-gameScreen.mainShip.getHalfWidth());
+        gameScreen.mainShip.v.setZero();
         gameScreen.state = GameScreen.State.PLAYING;
         gameScreen.bulletPool.destroyActiveSprites();
         gameScreen.enemyPool.destroyActiveSprites();
