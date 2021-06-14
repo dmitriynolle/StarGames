@@ -21,7 +21,7 @@ public class GameScreen extends BaseScreen {
 
     private static final int STAR_COUNT = 64;
 
-    private enum State {PLAYING, GAME_OVER}
+    public enum State {PLAYING, GAME_OVER}
 
     private Texture bg;
     private TextureAtlas atlas;
@@ -29,11 +29,12 @@ public class GameScreen extends BaseScreen {
     private Background background;
     private Star[] stars;
     private GameOver gameOver;
+    private NewGame newGame;
 
-    private BulletPool bulletPool;
-    private EnemyPool enemyPool;
+    public BulletPool bulletPool;
+    public EnemyPool enemyPool;
     private ExplosionPool explosionPool;
-    private MainShip mainShip;
+    public MainShip mainShip;
 
     private Sound explosionSound;
     private Sound laserSound;
@@ -41,7 +42,7 @@ public class GameScreen extends BaseScreen {
     private Music music;
 
     private EnemyEmitter enemyEmitter;
-    private State state;
+    public State state;
 
     @Override
     public void show() {
@@ -66,6 +67,7 @@ public class GameScreen extends BaseScreen {
         music.setLooping(true);
         music.play();
         state = State.PLAYING;
+        newGame = new NewGame(atlas, this);
     }
 
     @Override
@@ -85,6 +87,7 @@ public class GameScreen extends BaseScreen {
         }
         mainShip.resize(worldBounds);
         gameOver.resize(worldBounds);
+        newGame.resize(worldBounds);
     }
 
     @Override
@@ -121,6 +124,8 @@ public class GameScreen extends BaseScreen {
     public boolean touchDown(Vector2 touch, int pointer, int button) {
         if (state == State.PLAYING) {
             mainShip.touchDown(touch, pointer, button);
+        } else {
+            newGame.touchDown(touch, pointer, button);
         }
         return false;
     }
@@ -129,6 +134,8 @@ public class GameScreen extends BaseScreen {
     public boolean touchUp(Vector2 touch, int pointer, int button) {
         if (state == State.PLAYING) {
             mainShip.touchUp(touch, pointer, button);
+        } else {
+            newGame.touchUp(touch, pointer, button);
         }
         return false;
     }
@@ -205,6 +212,7 @@ public class GameScreen extends BaseScreen {
             enemyPool.drawActiveSprites(batch);
         } else {
             gameOver.draw(batch);
+            newGame.draw(batch);
         }
         explosionPool.drawActiveSprites(batch);
         batch.end();
