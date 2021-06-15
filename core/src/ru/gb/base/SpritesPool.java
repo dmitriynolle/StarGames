@@ -51,12 +51,9 @@ public abstract class SpritesPool<T extends Sprite> {
         }
     }
 
-    public void destroyActiveSprites (){
-        for (T item : activeObjects) {
-            if (!item.isDestroyed()) {
-                item.destroy();
-            }
-        }
+    public void freeAllActiveObjects() {
+        freeObjects.addAll(activeObjects);
+        activeObjects.clear();
     }
 
     public void dispose() {

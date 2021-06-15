@@ -28,7 +28,6 @@ public class Sprite extends Rect {
 
     /**
      * Установка размера изображения по высоте
-     *
      * @param height высота
      */
     public void setHeightProportion(float height) {
@@ -39,7 +38,6 @@ public class Sprite extends Rect {
 
     /**
      * Логика спрайта
-     *
      * @param delta отрезок времени
      */
     public void update(float delta) {
@@ -94,10 +92,6 @@ public class Sprite extends Rect {
     }
 
     public void flushDestroy() {
-        destroyed = false;
-    }
-
-    public void alilve() {
         destroyed = false;
     }
 }
